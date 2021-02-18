@@ -1,0 +1,22 @@
+name: Comment on Pull Request
+
+on:
+  pull_request:
+    types: opened
+
+jobs:
+  example_comment_pr:
+    runs-on: ubuntu-latest
+    name: Add submit comments to the PR
+    steps:
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@master
+        with:
+          message: |
+            Thanks for submitting your project by this pull request (PR).
+            Please don't forget to:
+            - Assign this PR to the course checker: jce-dev (on the right bar)
+            - Submit also the url to this PR over here: https://forms.gle/ZQAmbwW8n414QSF7A
+            - Just keep the PR open, the checker will comment here as needed, and finally close it.
+            Good luck with your next projects!
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

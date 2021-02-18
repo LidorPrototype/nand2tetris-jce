@@ -1,0 +1,22 @@
+name: 'Lock down repository'
+
+on:
+  pull_request:
+    types: opened
+#  schedule:
+#    - cron: '0 * * * *'
+
+jobs:
+  lockdown:
+    if: github.repository == 'jce-il/nand2tetris-jce'
+    runs-on: ubuntu-latest
+    name: in case of submitting to the wrong course repositorty
+    steps:
+      - uses: dessant/repo-lockdown@v2
+        with:
+          github-token: ${{ github.token }}
+          pr-comment: >
+            Attention, this repository does not accept pull requests!
+            Open a pull request bwtween branches on **your** repository, and assign the lecturer/checker.
+            See the README for more details.
+
